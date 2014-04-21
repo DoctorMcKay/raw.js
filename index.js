@@ -55,15 +55,17 @@ reddit.prototype._apiRequest = function(endpoint, options, callback) {
 		options.auth = {"user": this._oauth2.id, "pass": this._oauth2.secret};
 	}
 	
-	var self = this;
-	request({
+	var req = {
 		"uri": options.domain + options.path + '/' + endpoint,
 		"method": options.method,
 		"form": options.form,
 		"qs": options.qs,
 		"headers": options.headers,
 		"auth": options.auth
-	}, callback);
+	};
+	
+	this.emit('debug-apirequest', req);
+	request(req, callback);
 };
 
 reddit.prototype.auth = function(options, callback) {
