@@ -82,7 +82,7 @@ reddit.prototype.auth = function(options, callback) {
 		// Normal OAuth2 authorization flow
 		form = {
 			"grant_type": "authorization_code",
-			"code": code,
+			"code": options.code,
 			"redirect_uri": this._oauth2.redirectUri
 		};
 	} else if(options.username) {
