@@ -127,6 +127,8 @@ reddit.prototype.auth = function(options, callback) {
 				}, (json.expires_in - 30) * 1000);
 			}
 			
+			json.scope = json.scope.split(',');
+			
 			callback(null, json);
 		} catch(e) {
 			callback("reddit API returned invalid JSON");
