@@ -66,27 +66,37 @@ reddit.prototype._apiRequest = function(endpoint, options, callback) {
 	}, callback);
 };
 
-reddit.prototype.auth = function(code, callback) {
+reddit.prototype.auth = function(options, callback) {
 	var self = this;
 	
-	var form;
+	if(typeof options == 'function') {
+		callback = options;
+		options = {};
+	}
 	
-	if(typeof code == 'function' || !code) {
-		callback = code;
-		
-		form = {
-			"grant_type": "refresh_token",
-			"refresh_token": self.refreshToken
-		};
-	} else {
+	if(options.code) {
+		// Normal OAuth2 authorization flow
 		form = {
 			"grant_type": "authorization_code",
 			"code": code,
 			"redirect_uri": this._oauth2.redirectUri
 		};
+	} else if(options.username) {
+		// Script authorization flow with client username and password
+		form = {
+			"grant_type": "password",
+			"username": options.username,
+			"password": options.password
+		};
+	} else {
+		// Getting a new bearer token from a refresh token
+		form = {
+			"grant_type": "refresh_token",
+			"refresh_token": self.refreshToken
+		};
 	}
 	
-	self._apiRequest("access_token", {"domain": "https://ssl.reddit.com", "method": "POST", "version": 1, "form": form}, function(err, body, response) {
+	self._apiRequest("access_token", {"domain": "https://ssl.reddit.com", "method": "POST", "version": 1, "form": form, "inAuthorizationFlow": true}, function(err, body, response) {
 		if(err) {
 			callback(err);
 			return;
