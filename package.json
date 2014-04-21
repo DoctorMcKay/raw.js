@@ -11,5 +11,8 @@
 	"repository": {
 		"type": "hg",
 		"url": "https://bitbucket.org/Doctor_McKay/raw.js"
+	},
+	"dependencies": {
+		"request":			"*"
 	}
 }
