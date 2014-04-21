@@ -48,8 +48,10 @@ reddit.prototype._apiRequest = function(endpoint, options, callback) {
 		options.path += "/v" + options.version;
 	}
 	
+	options.headers = options.headers || {};
+	options.headers["User-Agent"] = this._userAgent;
+	
 	if(this.bearerToken && !options.inAuthorizationFlow) {
-		options.headers = options.headers || {};
 		options.headers["Authorization"] = "bearer " + this.bearerToken;
 	} else if(this._oauth2) {
 		options.auth = {"user": this._oauth2.id, "pass": this._oauth2.secret};
