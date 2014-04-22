@@ -512,6 +512,17 @@ Gets top submissions.
 
 This is a Listing request, see the **Listing Request** section above for details. In addition to normal Listing options, a `t` parameter may be passed with one of the following values: `hour`, `day`, `week`, `month`, `year`, `all` to filter submissions to a particular time.
 
+## subredditInfo(r, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Gets information for a subreddit.
+
+- `r` - The subreddit to get info for
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The subreddit's data
+
 ## comment(parent, text, callback)
 
 *Scope: submit*
