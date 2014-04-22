@@ -140,6 +140,8 @@ Many reddit API methods return Listings. Any method in raw.js which retrieves a 
 
 # Methods
 
+This section lists all methods provided by raw.js. If a method is marked as *Scope: foo*, then it requires that OAuth2 scope in order to use it. If a method is marked as **Listing Request**, then it is a Listing request; see the **Listing Request** section above. If a method is marked as **Unauthenticated**, then it may be called while not authenticated.
+
 ## setupOAuth2(id, secret, redirectUri)
 
 Sets up OAuth2 authentication. You must call this before you call `auth` if you plan to authenticate a user.
