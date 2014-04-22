@@ -7,6 +7,10 @@ global.reddit = reddit;
 
 require('util').inherits(reddit, require('events').EventEmitter);
 
+require('./handlers.js');
+
+require('./modposts.js');
+
 function reddit(userAgent) {
 	this._userAgent = userAgent;
 }
