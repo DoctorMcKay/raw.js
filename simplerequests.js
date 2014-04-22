@@ -65,7 +65,7 @@ reddit._addListingRequest = function(name, endpoint, path) {
 		}
 		
 		var self = this;
-		this._apiRequest(endpoint, {"path": requestPath, "qs": qs, "domain": ((self.bearerToken) ? undefined : "http://www.reddit.com")}, function(err, response, body) {
+		this._apiRequest(endpoint, {"path": requestPath, "qs": qs}, function(err, response, body) {
 			self._listing(err, body, callback);
 		});
 	};
