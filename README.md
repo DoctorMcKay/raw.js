@@ -454,6 +454,17 @@ Searches for subreddit topics.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - The array of matched subreddits
 
+## userTrophies(user, callback)
+
+*Scope: read*
+
+Gets a listing of a user's trophies.
+
+- `user` - The username of the user to get trophies for
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The array of the user's trophies is available as `response.trophies`
+
 ## comment(parent, text, callback)
 
 *Scope: submit*
