@@ -153,3 +153,12 @@ reddit.prototype.auth = function(options, callback) {
 		}
 	});
 };
+
+reddit.prototype.logout = function() {
+	if(self._refreshTimeout) {
+		clearTimeout(self._refreshTimeout);
+	}
+	
+	delete self.bearerToken;
+	delete self.refreshToken;
+};
