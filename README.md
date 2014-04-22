@@ -261,9 +261,7 @@ Gets the list of trophies earned by the current user.
 
 ## modlog(options, callback)
 
-*Scope: modlog*
-
-**Listing Request**
+*Scope: modlog* - **Listing Request**
 
 Gets the moderation log for a subreddit that the currently authenticated user is a moderator in. This is a Listing request, see the **Listing Request** section above for details.
 
