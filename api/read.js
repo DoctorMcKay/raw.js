@@ -123,3 +123,5 @@ reddit.prototype.subredditInfo = function(r, callback) {
 		self._rawJSON(err, body, callback);
 	});
 };
+
+reddit._addListingRequest("search", "search.json");
