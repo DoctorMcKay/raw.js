@@ -123,14 +123,26 @@ reddit.prototype.auth = function(options, callback) {
 			
 			if(json.refresh_token) {
 				self.refreshToken = json.refresh_token;
-				// If we are given a refresh token, set a timer to automatically refresh it when our bearer token expires
-				setTimeout(function() {
+			}
+			
+			if(self.refreshToken) {
+				// If we have a refresh token, set a timer to automatically refresh it when our bearer token expires
+				self._refreshTimeout = setTimeout(function() {
 					self.auth(function(err, data) {
 						if(err) {
-							self.emit('error', "Unable to refresh bearer token", err);
+							self.emit('error', "Unable to refresh bearer token: " + err);
 						}
 					});
-				}, (json.expires_in - 30) * 1000);
+				}, (json.expires_in - 60) * 1000);
+			} else if(options.username) {
+				// If we're logged in as a script, set a timer to automatically refresh the login when our bearer token expires
+				self._refreshTimeout = setTimeout(function() {
+					self.auth(options, function(err, data) {
+						if(err) {
+							self.emit('error', "Unable to get new bearer token: " + err);
+						}
+					});
+				}, (json.expires_in - 60) * 1000);
 			}
 			
 			json.scope = json.scope.split(',');
