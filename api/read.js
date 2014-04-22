@@ -126,3 +126,5 @@ reddit.prototype.subredditInfo = function(r, callback) {
 
 reddit._addListingRequest("search", "search.json");
 reddit._addListingRequest("searchSubreddits", "subreddits/search.json");
+reddit._addListingRequest("popularSubreddits", "subreddits/popular.json");
+reddit._addListingRequest("newSubreddits", "subreddits/new.json");
