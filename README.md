@@ -152,6 +152,14 @@ See the **Client Authorization** section above for usage of this method.
 
 Deletes the current bearer and refresh tokens (if applicable) and cancels any pending bearer token refresh timers. You should call this before you call `auth` for a second time.
 
+## getRateLimitDetails()
+
+Gets details about our current API rate limits. An object is returned with the following properties:
+
+- `used` - The number of API calls that we've used this period
+- `remaining` - The number of API calls that we're allowed to make this period before hitting the limit
+- `reset` - The number of seconds before the current limit period resets
+
 ## me(callback)
 
 *Scope: identity*
