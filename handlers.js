@@ -73,3 +73,31 @@ reddit.prototype._rawJSON = function(err, body, callback) {
 		callback("reddit API returned invalid response: " + e);
 	}
 };
+
+reddit.prototype._listing = function(err, body, callback) {
+	if(!callback) {
+		return;
+	}
+	
+	if(err) {
+		callback(err);
+		return;
+	}
+	
+	try {
+		var json = JSON.parse(body);
+		if(json.error) {
+			callback(json.error);
+			return;
+		}
+		
+		if(json.kind != "Listing") {
+			callback("Expected \"Listing\", got unknown response kind: \"" + json.kind + "\"");
+			return;
+		}
+		
+		callback(null, json.data);
+	} catch(e) {
+		callback("reddit API returned invalid response: " + e);
+	}
+};
