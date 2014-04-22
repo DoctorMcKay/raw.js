@@ -20,8 +20,15 @@ reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, cal
 			userCallback = null;
 		}
 		
+		var req = {"method": method};
+		if(method == "GET") {
+			req.qs = form;
+		} else {
+			req.form = form;
+		}
+		
 		var self = this;
-		this._apiRequest(endpoint, {"method": method, "form": form}, function(err, response, body) {
+		this._apiRequest(endpoint, req, function(err, response, body) {
 			self[callback](err, body, userCallback);
 		});
 	};
