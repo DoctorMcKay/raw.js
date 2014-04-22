@@ -123,6 +123,21 @@ reddit.auth(function(err, response) {
 });
 ```
 
+# Listing Request
+
+Many reddit API methods return Listings. Any method in raw.js which retrieves a Listing from reddit will be marked and will have common arguments:
+
+- `options` - An object containing options for the call
+	- `r` - A subreddit to request a listing for. For some calls this is optional; for others, it's required.
+	- `after` - The ID of the thing to start getting results after
+	- `before` - The ID of the thing to start getting results before
+	- `limit` - The maximum number of results to return. Default 25, maximum 100.
+	- `count` - The number of items that we've already seen in this listing, for numbered items across multiple pages. This can usually be ignored.
+	- `all` - If `true`, filters such as "hide links that I have voted on" will be disabled.
+- `callback` - Required.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The response data returned by reddit
+
 # Methods
 
 ## setupOAuth2(id, secret, redirectUri)
@@ -235,6 +250,17 @@ Gets the list of trophies earned by the current user.
 - `callback` - Optional.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - An array containing the user's trophy list
+
+## modlog(options, callback)
+
+*Scope: modlog*
+
+**Listing Request**
+
+Gets the moderation log for a subreddit that the currently authenticated user is a moderator in. This is a Listing request, see the **Listing Request** section above for details.
+
+- `options` - The request options (see **Listing Request** section for details)
+- `callback` - The callback (see **Listing Request** section for details)
 
 ## approve(thing, callback)
 
