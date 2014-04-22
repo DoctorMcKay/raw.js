@@ -16,6 +16,7 @@ require('./api/identity.js');
 require('./api/modlog.js');
 require('./api/modposts.js');
 require('./api/read.js');
+require('./api/report.js');
 require('./api/submit.js');
 
 function reddit(userAgent) {
