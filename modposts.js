@@ -1,11 +1,16 @@
 var reddit = global.reddit;
 
-reddit.prototype.approve = function(thing, callback) {
-	var self = this;
-	this._apiRequest("approve", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
+// reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, callback)
+
+reddit._addSimpleRequest("approve", "approve", "POST", ["id"], null, "_noResponse");
+reddit._addSimpleRequest("ignoreReports", "ignore_reports", "POST", ["id"], null, "_noResponse");
+reddit._addSimpleRequest("unignoreReports", "unignore_reports", "POST", ["id"], null, "_noResponse");
+reddit._addSimpleRequest("nsfw", "marknsfw", "POST", ["id"], null, "_noResponse");
+reddit._addSimpleRequest("unnsfw", "unmarknsfw", "POST", ["id"], null, "_noResponse");
+reddit._addSimpleRequest("remove", "remove", "POST", ["id"], {"spam": false}, "_noResponse");
+reddit._addSimpleRequest("spam", "remove", "POST", ["id"], {"spam": true}, "_noResponse");
+reddit._addSimpleRequest("contestMode", "set_contest_mode", "POST", ["id", "state"], {"api_type": "json"}, "_noResponse");
+reddit._addSimpleRequest("sticky", "set_subreddit_sticky", "POST", ["id", "state"], {"api_type": "json"}, "_noResponse");
 
 reddit.prototype.distinguish = function(thing, distinguish, callback) {
 	if(distinguish === true) {
@@ -21,61 +26,5 @@ reddit.prototype.distinguish = function(thing, distinguish, callback) {
 		"id": thing
 	}}, function(err, response, body) {
 		self._modifySingleItem(err, body, callback);
-	});
-};
-
-reddit.prototype.ignoreReports = function(thing, callback) {
-	var self = this;
-	this._apiRequest("ignore_reports", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
-
-reddit.prototype.unignoreReports = function(thing, callback) {
-	var self = this;
-	this._apiRequest("unignore_reports", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
-
-reddit.prototype.nsfw = function(thing, callback) {
-	var self = this;
-	this._apiRequest("marknsfw", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
-
-reddit.prototype.unnsfw = function(thing, callback) {
-	var self = this;
-	this._apiRequest("unmarknsfw", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
-
-reddit.prototype.remove = function(thing, callback) {
-	var self = this;
-	this._apiRequest("remove", {"method": "POST", "form": {"id": thing, "spam": false}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
-
-reddit.prototype.spam = function(thing, callback) {
-	var self = this;
-	this._apiRequest("remove", {"method": "POST", "form": {"id": thing, "spam": true}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
-
-reddit.prototype.contestMode = function(thing, state, callback) {
-	var self = this;
-	this._apiRequest("set_contest_mode", {"method": "POST", "form": {"api_type": "json", "id": thing, "state": state}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
-	});
-};
-
-reddit.prototype.sticky = function(thing, state, callback) {
-	var self = this;
-	this._apiRequest("set_subreddit_sticky", {"method": "POST", "form": {"api_type": "json", "id": thing, "state": state}}, function(err, response, body) {
-		self._noResponse(err, body, callback);
 	});
 };
