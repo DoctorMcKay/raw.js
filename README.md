@@ -263,10 +263,9 @@ Gets the list of trophies earned by the current user.
 
 *Scope: modlog* - **Listing Request**
 
-Gets the moderation log for a subreddit that the currently authenticated user is a moderator in. This is a Listing request, see the **Listing Request** section above for details.
+Gets the moderation log for a subreddit that the currently authenticated user is a moderator in.
 
-- `options` - The request options (see **Listing Request** section for details)
-- `callback` - The callback (see **Listing Request** section for details)
+This is a Listing request, see the **Listing Request** section above for details.
 
 ## approve(thing, callback)
 
@@ -480,6 +479,38 @@ Gets a listing of a user's trophies.
 - `callback` - Optional.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - The listing of the comments
+
+## hot(options, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Gets hot submissions.
+
+This is a Listing request, see the **Listing Request** section above for details.
+
+## new(options, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Gets new submissions.
+
+This is a Listing request, see the **Listing Request** section above for details.
+
+## top(options, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Gets top submissions.
+
+This is a Listing request, see the **Listing Request** section above for details. In addition to normal Listing options, a `t` parameter may be passed with one of the following values: `hour`, `day`, `week`, `month`, `year`, `all` to filter submissions to a particular time.
+
+## controversial(options, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Gets top submissions.
+
+This is a Listing request, see the **Listing Request** section above for details. In addition to normal Listing options, a `t` parameter may be passed with one of the following values: `hour`, `day`, `week`, `month`, `year`, `all` to filter submissions to a particular time.
 
 ## comment(parent, text, callback)
 
