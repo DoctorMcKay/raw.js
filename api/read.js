@@ -81,3 +81,10 @@ reddit._addListingRequest("hot", "hot.json");
 reddit._addListingRequest("new", "new.json");
 reddit._addListingRequest("top", "top.json");
 reddit._addListingRequest("controversial", "controversial.json");
+
+reddit.prototype.subredditInfo = function(r, callback) {
+	var self = this;
+	this._apiRequest("about.json", {"path": "/r/" + r}, function(err, response, body) {
+		self._rawJSON(err, body, callback);
+	});
+};
