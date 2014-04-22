@@ -165,20 +165,12 @@ reddit.prototype.auth = function(options, callback) {
 			if(self.refreshToken) {
 				// If we have a refresh token, set a timer to automatically refresh it when our bearer token expires
 				self._refreshTimeout = setTimeout(function() {
-					self.auth(function(err, data) {
-						if(err) {
-							self.emit('error', "Unable to refresh bearer token: " + err);
-						}
-					});
+					refreshBearerToken(self);
 				}, (json.expires_in - 60) * 1000);
 			} else if(options.username) {
 				// If we're logged in as a script, set a timer to automatically refresh the login when our bearer token expires
 				self._refreshTimeout = setTimeout(function() {
-					self.auth(options, function(err, data) {
-						if(err) {
-							self.emit('error', "Unable to get new bearer token: " + err);
-						}
-					});
+					refreshBearerToken(self, options);
 				}, (json.expires_in - 60) * 1000);
 			}
 			
@@ -190,6 +182,38 @@ reddit.prototype.auth = function(options, callback) {
 		}
 	});
 };
+
+function refreshBearerToken(self, options) {
+	if(options) {
+		self.auth(options, function(err, response) {
+			if(err) {
+				self.emit('debug-error', "Unable to refresh bearer token: " + err);
+				if(err == "invalid_grant") {
+					// Password is no longer valid
+					self.emit('error', "Unable to refresh bearer token: password is no longer valid");
+					self.logout();
+					return;
+				}
+				
+				refreshBearerToken(self, options); // Try again!
+			}
+		});
+	} else {
+		self.auth(function(err, response) {
+			if(err) {
+				self.emit('debug-error', "Unable to refresh bearer token: " + err);
+				if(err == "invalid_request") {
+					// Access was revoked
+					self.emit('error', "Unable to refresh bearer token: app access was revoked");
+					self.logout();
+					return;
+				}
+				
+				refreshBearerToken(self); // Try again!
+			}
+		});
+	}
+}
 
 reddit.prototype.logout = function() {
 	if(self._refreshTimeout) {
