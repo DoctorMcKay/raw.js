@@ -25,3 +25,15 @@ reddit.prototype.multiDescription = function(user, multi, callback) {
 		self._rawJSON(err, body, callback);
 	});
 };
+
+reddit.prototype.recommended = function(sr, omit, callback) {
+	if(typeof omit == 'function') {
+		callback = omit;
+		omit = [];
+	}
+	
+	var self = this;
+	this._apiRequest(sr.join(','), {"path": "/api/recommend/sr", "qs": {"omit": omit.join(',')}}, function(err, response, body) {
+		self._rawJSON(err, body, callback);
+	});
+};

@@ -413,11 +413,23 @@ Gets info for a user's multireddit.
 
 Gets the description for a user's multireddit.
 
-- `user` - USername of the multi's owner
+- `user` - Username of the multi's owner
 - `multi` - Name of the multi to retrieve the description for
 - `callback` - Optional.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - The raw Markdown description will be available as `response.data.body_md`, the parsed HTML description will be available as `response.data.body_html`
+
+## recommended(sr, omit, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Gets a list of recommended subreddits based on subreddits supplied to it.
+
+- `sr` - Array of subreddit names to base the recommendations off of
+- `omit` - *Optional.* Array of subreddit names to filter out of the recommended list
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - An array of recommended subreddits
 
 ## comment(parent, text, callback)
 
