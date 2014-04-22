@@ -8,7 +8,7 @@ raw.js is an API wrapper for reddit.com written in Node.js. It supports OAuth2 a
 While in development, raw.js may be installed using the following command:
 
 ```text
-npm install https://bitbucket.org/Doctor_McKay/raw.js/get/tip.tar.gz
+npm install raw.js
 ```
 
 # Rules
