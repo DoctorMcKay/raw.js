@@ -178,6 +178,10 @@ reddit.prototype.logout = function() {
 };
 
 reddit.prototype.getRateLimitDetails = function() {
+	if(!this._rateLimit) {
+		return false;
+	}
+	
 	var now = Math.floor(Date.now() / 1000);
 	if(this._rateLimit.reset < now) {
 		this._rateLimit.remaining += this._rateLimit.used;
