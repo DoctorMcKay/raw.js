@@ -8,6 +8,7 @@ global.reddit = reddit;
 require('util').inherits(reddit, require('events').EventEmitter);
 
 require('./handlers.js');
+require('./simplerequests.js');
 
 require('./modposts.js');
 
