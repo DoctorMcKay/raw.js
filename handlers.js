@@ -50,3 +50,26 @@ reddit.prototype._noResponse = function(err, body, callback) {
 	
 	callback(null);
 };
+
+reddit.prototype._rawJSON = function(err, body, callback) {
+	if(!callback) {
+		return;
+	}
+	
+	if(err) {
+		callback(err);
+		return;
+	}
+	
+	try {
+		var json = JSON.parse(body);
+		if(json.error) {
+			callback(json.error);
+			return;
+		}
+		
+		callback(null, json);
+	} catch(e) {
+		callback("reddit API returned invalid response: " + e);
+	}
+};
