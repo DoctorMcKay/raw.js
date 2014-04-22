@@ -128,3 +128,10 @@ reddit._addListingRequest("search", "search.json");
 reddit._addListingRequest("searchSubreddits", "subreddits/search.json");
 reddit._addListingRequest("popularSubreddits", "subreddits/popular.json");
 reddit._addListingRequest("newSubreddits", "subreddits/new.json");
+
+reddit.prototype.user = function(user, callback) {
+	var self = this;
+	this._apiRequest("about.json", {"path": "/user/" + user}, function(err, response, body) {
+		self._rawJSON(err, body, callback);
+	});
+};
