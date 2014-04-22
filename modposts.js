@@ -1,12 +1,9 @@
 var reddit = global.reddit;
 
 reddit.prototype.approve = function(thing, callback) {
+	var self = this;
 	this._apiRequest("approve", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
-		if(!callback) {
-			return;
-		}
-		
-		callback(err);
+		self._noResponse(err, body, callback);
 	});
 };
 
