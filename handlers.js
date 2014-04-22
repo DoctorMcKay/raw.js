@@ -91,11 +91,6 @@ reddit.prototype._listing = function(err, body, callback) {
 			return;
 		}
 		
-		if(json.kind != "Listing") {
-			callback("Expected \"Listing\", got unknown response kind: \"" + json.kind + "\"");
-			return;
-		}
-		
 		callback(null, json.data);
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
