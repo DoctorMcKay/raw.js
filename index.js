@@ -100,14 +100,14 @@ reddit.prototype.auth = function(options, callback) {
 		};
 	}
 	
-	self._apiRequest("access_token", {"domain": "https://ssl.reddit.com", "method": "POST", "version": 1, "form": form, "inAuthorizationFlow": true}, function(err, body, response) {
+	self._apiRequest("access_token", {"domain": "https://ssl.reddit.com", "method": "POST", "version": 1, "form": form, "inAuthorizationFlow": true}, function(err, response, body) {
 		if(err) {
 			callback(err);
 			return;
 		}
 		
 		try {
-			var json = JSON.parse(response);
+			var json = JSON.parse(body);
 			if(json.error) {
 				callback(json.error);
 				return;
