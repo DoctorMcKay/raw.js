@@ -39,13 +39,13 @@ reddit._addListingRequest = function(name, endpoint, path) {
 		var options;
 		var callback;
 		if(arguments.length == 0) {
-			options = null;
+			options = {};
 			callback = null;
 		} else if(arguments.length == 1 && typeof arguments[0] == 'object') {
 			options = arguments[0];
 			callback = null;
 		} else if(arguments.length == 1 && typeof arguments[0] == 'function') {
-			options = null;
+			options = {};
 			callback = arguments[0];
 		} else {
 			options = arguments[0];
