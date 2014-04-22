@@ -3,6 +3,7 @@ var request = require('request');
 var Exception = require('./exception.js');
 
 module.exports = reddit;
+global.reddit = reddit;
 
 require('util').inherits(reddit, require('events').EventEmitter);
 
