@@ -176,6 +176,33 @@ Gets the URL of a new CAPTCHA image. Call this if `captchaNeeded` reports that y
 	- `err` - A string explaining the error that occurred (an array of strings if multiple errors occurred), or `null` if success
 	- `url` - The URL to the new CAPTCHA image
 
+## delete(thing, callback)
+
+Deletes a submission or comment.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to delete
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+
+## edit(thing, text, callback)
+
+Edits a comment or self post.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to edit
+- `text` - New text for the thing (Markdown)
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - An object containing the thing's new data
+
+## inboxReplies(thing, state, callback)
+
+Enables or disables inbox replies (orangered for new top-level comment) for a link.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to change
+- `state` - `true` to receive top-level comment replies in the inbox, `false` otherwise
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+
 ## me(callback)
 
 *Scope: identity*
