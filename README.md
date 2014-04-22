@@ -195,6 +195,8 @@ Gets the URL of a new CAPTCHA image. Call this if `captchaNeeded` reports that y
 
 ## del(thing, callback)
 
+*Scope: edit*
+
 Deletes a submission or comment.
 
 - `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to delete
@@ -202,6 +204,8 @@ Deletes a submission or comment.
 	- `err` - A string explaining the error that occurred, or `null` if success
 
 ## edit(thing, text, callback)
+
+*Scope: edit*
 
 Edits a comment or self post.
 
@@ -212,6 +216,8 @@ Edits a comment or self post.
 	- `response` - An object containing the thing's new data
 
 ## inboxReplies(thing, state, callback)
+
+*Scope: edit*
 
 Enables or disables inbox replies (orangered for new top-level comment) for a link.
 
