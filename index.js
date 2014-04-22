@@ -23,6 +23,8 @@ reddit.prototype.setupOAuth2 = function(id, secret, redirectUri) {
 		secret: secret,
 		redirectUri: redirectUri
 	};
+	
+	this._rateLimit;
 };
 
 reddit.prototype.authUrl = function(state, scopes, permanent) {
@@ -73,8 +75,19 @@ reddit.prototype._apiRequest = function(endpoint, options, callback) {
 		"auth": options.auth
 	};
 	
+	var self = this;
 	this.emit('debug-apirequest', req);
-	request(req, callback);
+	request(req, function(err, response, body) {
+		if(response && response.headers && response.headers['x-ratelimit-remaining'] != undefined && response.headers['x-ratelimit-used'] != undefined && response.headers['x-ratelimit-reset'] != undefined) {
+			self._rateLimit = {
+				"remaining": parseInt(response.headers['x-ratelimit-remaining']),
+				"used": parseInt(response.headers['x-ratelimit-used']),
+				"reset": Math.floor(Date.now() / 1000) + parseInt(response.headers['x-ratelimit-reset'])
+			};
+		}
+		
+		callback(err, response, body);
+	});
 };
 
 reddit.prototype.auth = function(options, callback) {
@@ -162,4 +175,19 @@ reddit.prototype.logout = function() {
 	
 	delete self.bearerToken;
 	delete self.refreshToken;
+};
+
+reddit.prototype.getRateLimitDetails = function() {
+	var now = Math.floor(Date.now() / 1000);
+	if(this._rateLimit.reset < now) {
+		this._rateLimit.remaining += this._rateLimit.used;
+		this._rateLimit.used = 0;
+		this._rateLimit.reset = 0;
+	}
+	
+	return {
+		"used": this._rateLimit.used,
+		"remaining": this._rateLimit.remaining,
+		"reset": this._rateLimit.reset - now
+	};
 };
