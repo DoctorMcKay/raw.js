@@ -154,7 +154,7 @@ Deletes the current bearer and refresh tokens (if applicable) and cancels any pe
 
 ## getRateLimitDetails()
 
-Gets details about our current API rate limits. An object is returned with the following properties:
+Gets details about our current API rate limits. `false` will be returned if no rate limit details are available yet (e.g. we haven't hit any API endpoints yet), otherwise an object is returned with the following properties:
 
 - `used` - The number of API calls that we've used this period
 - `remaining` - The number of API calls that we're allowed to make this period before hitting the limit
