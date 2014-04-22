@@ -48,5 +48,5 @@ reddit.prototype._noResponse = function(err, body, callback) {
 		return;
 	}
 	
-	callback();
+	callback(null);
 };
