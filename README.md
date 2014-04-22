@@ -465,6 +465,22 @@ Gets a listing of a user's trophies.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - The array of the user's trophies is available as `response.trophies`
 
+## comments(options, callback)
+
+*Scope: read* - **Unauthenticated**
+
+- `options` - *Optional.* An object containing the following options. If not provided, then the newest comments for the user's subscribed subreddits will be returned.
+	- `r` - *Optional.* A subreddit to get comments for. If neither `r` nor `link` are supplied, all comments for the user's subscribed subreddits will be returned. To get comments from all subreddits, use `all`
+	- `link` - *Optional.* A link to get comments for. If neither `r` nor `link` are supplied, all comments for the user's subscribed subreddits will be returned.
+	- `comment` - *Optional.* A comment to focus on. If this is supplied, this will be the root comment returned (with an optional number of parents defined by `context`)
+	- `context` - *Optional.* If `comment` is specified, this many parents will also be returned. Maximum 8.
+	- `depth` - *Optional.* The maximum depth of subtrees in the thread.
+	- `limit` - *Optional.* The maximum number of comments to return.
+	- `sort` - *Optional.* One of `confidence`, `top`, `new`, `hot`, `controversial`, `old`, `random`. Only relevant if `link` is supplied.
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The listing of the comments
+
 ## comment(parent, text, callback)
 
 *Scope: submit*
