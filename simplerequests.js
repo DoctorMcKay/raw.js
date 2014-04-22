@@ -61,16 +61,16 @@ reddit._addListingRequest = function(name, endpoint, path) {
 			requestPath += path;
 		}
 		
-		var qs;
-		if(options.after || options.before || options.limit || options.count || options.all) {
-			qs = {};
-			qs.after = options.after;
-			qs.before = options.before;
-			qs.limit = options.limit;
-			qs.count = options.count;
-			qs.all = (options.all) ? "all" : undefined;
-			qs.t = options.t;
-		}
+		var qs = {};
+		qs.after = options.after;
+		qs.before = options.before;
+		qs.limit = options.limit;
+		qs.count = options.count;
+		qs.show = (options.all) ? "all" : undefined;
+		qs.t = options.t;
+		qs.q = options.q;
+		qs.restrict_sr = !!options.r;
+		qs.sort = options.sort;
 		
 		var self = this;
 		this._apiRequest(endpoint, {"path": requestPath, "qs": qs}, function(err, response, body) {
