@@ -125,3 +125,4 @@ reddit.prototype.subredditInfo = function(r, callback) {
 };
 
 reddit._addListingRequest("search", "search.json");
+reddit._addListingRequest("searchSubreddits", "subreddits/search.json");
