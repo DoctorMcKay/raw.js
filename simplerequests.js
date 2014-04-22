@@ -69,6 +69,7 @@ reddit._addListingRequest = function(name, endpoint, path) {
 			qs.limit = options.limit;
 			qs.count = options.count;
 			qs.all = (options.all) ? "all" : undefined;
+			qs.t = options.t;
 		}
 		
 		var self = this;
