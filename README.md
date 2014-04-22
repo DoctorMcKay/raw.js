@@ -116,7 +116,7 @@ reddit.auth(function(err, response) {
 		// The user is now authenticated. If you want the temporary bearer token, it's available as response.access_token and will be valid for response.expires_in seconds.
 		// raw.js will automatically refresh the bearer token as it expires.
 		
-		// The array scopes that this authorization allows are available as response.scope, which is useful for checking which permissions a saved session has.
+		// The array of scopes that this authorization allows are available as response.scope, which is useful for checking which permissions a saved session has.
 	}
 });
 ```
