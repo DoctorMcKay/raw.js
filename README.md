@@ -129,8 +129,121 @@ Sets up OAuth2 authentication. You must call this before you call `auth` if you 
 
 ## authUrl(state, scopes, permanent)
 
-Generates an authorization request URL. You should redirect the user to this URL in order for them to grant access to your app, after which they will be redirected back to your app's redirect URI. The `state` will be passed back to your website as a GET parameter when the user is redirected. You might want to use this to verify that your server initiated the request. `scopes` should be an array of scope strings. You'll need to request access for the scope for each method that you plan to use. Pass `true` for `permanent` if you want this authorization to be permanent, otherwise the authorization will last for only one hour.
+Generates an authorization request URL. You should redirect the user to this URL in order for them to grant access to your app, after which they will be redirected back to your app's redirect URI.
+
+- `state` - A value that will be passed back to your website as a GET parameter when the user is redirected. You might want to use this to verify that your server initiated the request.
+- `scopes` - An array of scope strings. You'll need to request access for the scope for each method that you plan to use.
+- `permanent` - `true` if you want this authorization to be permanent, otherwise the authorization will last for only one hour. This should be `false` or ommitted if you want a temporary authorization.
 
 ## auth(options, callback)
 
 See the **Client Authorization** section above for usage of this method.
+
+- `options` - An object containing the authorization options.
+- `callback` - Required.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - An object containing response data
+
+## approve(thing, callback)
+
+*Scope: modposts*
+
+Approves a link or comment.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to approve
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+
+## distinguish(thing, distinguish, callback)
+
+*Scope: modposts*
+
+Distinguishes a link or comment.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to distinguish
+- `distinguish` - `true` to distinguish as a mod, `false` to undistinguish. Other possible values are `admin` or `special`, but these don't apply to most users
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `data` - An object containing data of the thing that was distinguished
+
+## ignoreReports = function(thing, callback)
+
+*Scope: modposts*
+
+Ignores reports on a link or comment.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to ignore reports on
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
+
+## unignoreReports(thing, callback)
+
+*Scope: modposts*
+
+Unignores reports on a link or comment.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to unignore reports on
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
+
+## nsfw(thing, callback)
+
+*Scope: modposts*
+
+Marks a link NSFW.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the link to mark NSFW
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
+
+## unnsfw(thing, callback)
+
+*Scope: modposts*
+
+Unmarks a link NSFW.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to unmark NSFW
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
+
+## remove(thing, callback)
+
+*Scope: modposts*
+
+Removes a link or comment from a subreddit.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to remove
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
+
+## spam(thing, callback)
+
+*Scope: modposts*
+
+Removes a link or comment from a subreddit and marks it as spam.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to spam
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
+
+## contestMode(thing, state, callback)
+
+*Scope: modposts*
+
+Sets a post into contest mode.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the post to set contest mode on
+- `state` - `true` to enable contest mode, `false` to disable
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
+
+## sticky(thing, state, callback)
+
+*Scope: modposts*
+
+Stickies a self-post to the top of the subreddit it's in. Note that stickying a post will unsticky any existing sticky.
+
+- `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the self-post to sticky
+- `state` - `true` to sticky, `false` to unsticky
+- `callback` - Optional.
+	- `err` - A string explaning the error that occurred, or `null` if success
