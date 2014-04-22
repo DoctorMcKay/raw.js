@@ -38,14 +38,14 @@ reddit.prototype.unignoreReports = function(thing, callback) {
 	});
 };
 
-reddit.prototype.marknsfw = function(thing, callback) {
+reddit.prototype.nsfw = function(thing, callback) {
 	var self = this;
 	this._apiRequest("marknsfw", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
 		self._noResponse(err, body, callback);
 	});
 };
 
-reddit.prototype.unmarknsfw = function(thing, callback) {
+reddit.prototype.unnsfw = function(thing, callback) {
 	var self = this;
 	this._apiRequest("unmarknsfw", {"method": "POST", "form": {"id": thing}}, function(err, response, body) {
 		self._noResponse(err, body, callback);
