@@ -160,6 +160,22 @@ Gets details about our current API rate limits. `false` will be returned if no r
 - `remaining` - The number of API calls that we're allowed to make this period before hitting the limit
 - `reset` - The number of seconds before the current limit period resets
 
+## captchaNeeded(callback)
+
+Checks whether a CAPTCHA is required for endpoints that support one.
+
+- `callback` - Required.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `required` - `true` if a CAPTCHA is required, `false` otherwise
+
+## captcha(callback)
+
+Gets the URL of a new CAPTCHA image. Call this if `captchaNeeded` reports that you need a CAPTCHA. This can also be called to request a new image if the current one is unreadable.
+
+- `callback` - Required.
+	- `err` - A string explaining the error that occurred (an array of strings if multiple errors occurred), or `null` if success
+	- `url` - The URL to the new CAPTCHA image
+
 ## me(callback)
 
 *Scope: identity*
@@ -210,7 +226,7 @@ Distinguishes a link or comment.
 - `thing` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the thing to distinguish
 - `distinguish` - `true` to distinguish as a mod, `false` to undistinguish. Other possible values are `admin` or `special`, but these don't apply to most users
 - `callback` - Optional.
-	- `err` - A string explaining the error that occurred, or `null` if success
+	- `err` - A string explaining the error that occurred (an array of strings if multiple errors occurred), or `null` if success
 	- `data` - An object containing data of the thing that was distinguished
 
 ## ignoreReports(thing, callback)
@@ -294,3 +310,44 @@ Stickies a self-post to the top of the subreddit it's in. Note that stickying a 
 - `state` - `true` to sticky, `false` to unsticky
 - `callback` - Optional.
 	- `err` - A string explaning the error that occurred, or `null` if success
+
+## comment(parent, text, callback)
+
+*Scope: submit*
+
+Posts a comment or a message reply.
+
+- `parent` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) (whether a link, comment, or message) of the thing to reply to
+- `text` - Body text of the comment or message (Markdown)
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `comment` - Data of our new comment/message
+
+## submit(options, callback)
+
+*Scope: submit*
+
+Submits a new link or self post.
+
+- `options` - An object containing the following properties:
+	- `url` - For link submissions, the URL of the link (omit for self posts)
+	- `save` - `true` to automatically save the submission
+	- `inboxReplies` - `true` to send top-level comments to your inbox
+	- `r` - The subreddit to submit to
+	- `text` - For self posts, the body text (Markdown)
+	- `title` - The title of the submission
+	- `captcha` - If a CAPTCHA is required, supply the text of the CAPTCHA image in this property (see `captchaNeeded` and `captcha` methods)
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred (an array of strings if multiple errors occurred), or `null` if success
+	- `id` - The ID of the new submission
+
+## submitText(r, callback)
+
+*Scope: submit*
+
+Gets the submission text for a subreddit.
+
+- `r` - The subreddit to retrieve submission text for
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - An object containing properties for `submit_text` (the raw Markdown text) and `submit_text_html` (Markdown parsed into HTML)
