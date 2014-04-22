@@ -374,6 +374,57 @@ Stickies a self-post to the top of the subreddit it's in. Note that stickying a 
 - `callback` - Optional.
 	- `err` - A string explaning the error that occurred, or `null` if success
 
+## moreComments(link, children, sort, callback)
+
+*Scope: read*
+
+**Unauthenticated**
+
+Retrieves comments hidden behind a "More Comments" link.
+
+- `link` - [Fullname](http://www.reddit.com/dev/api/oauth#fullnames) of the link where the comments were submitted
+- `children` - Comma-separated list of comment ID36s, **not** fullnames
+- `sort` - One of `confidence`, `top`, `new`, `hot`, `controversial`, `old`, `random`
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - Array of comments
+
+## multis(callback)
+
+*Scope: read*
+
+Gets the list of multireddits owned by the currently authenticated user.
+
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - Array of multis
+
+## multiInfo(user, multi, callback)
+
+*Scope: read*
+
+**Unauthenticated**
+
+Gets info for a user's multireddit.
+
+- `user` - Username of the multi's owner
+- `multi` - Name of the multi to retrieve info for
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The data for the multi that we requested
+
+## multiDescription(user, multi, callback)
+
+*Scope: read*
+
+Gets the description for a user's multireddit.
+
+- `user` - USername of the multi's owner
+- `multi` - Name of the multi to retrieve the description for
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The raw Markdown description will be available as `response.data.body_md`, the parsed HTML description will be available as `response.data.body_html`
+
 ## comment(parent, text, callback)
 
 *Scope: submit*
