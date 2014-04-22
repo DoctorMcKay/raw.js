@@ -41,3 +41,10 @@ reddit.prototype.submit = function(options, callback) {
 		}
 	});
 };
+
+reddit.prototype.submitText = function(r, callback) {
+	var self = this;
+	this._apiRequest("submit_text.json", {"path": "/r/" + r + "/api"}, function(err, response, body) {
+		self._rawJSON(err, body, callback);
+	});
+};
