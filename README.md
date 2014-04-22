@@ -125,7 +125,11 @@ reddit.auth(function(err, response) {
 
 ## setupOAuth2(id, secret, redirectUri)
 
-Sets up OAuth2 authentication. You must call this before you call `auth` if you plan to authenticate a user. Get the `id` and `secret` from the [apps page](https://ssl.reddit.com/prefs/apps/). The `redirectUri` is optional for `script` apps, but for all other apps it is required and must match the redirect URI you gave to reddit exactly.
+Sets up OAuth2 authentication. You must call this before you call `auth` if you plan to authenticate a user.
+
+- `id` - Your app's client ID. Obtain this and the secret from the [apps page](https://ssl.reddit.com/prefs/apps/) on reddit.
+- `secret` - Your app's client secret.
+- `redirectUri` - Your app's redirect URI. This must match the URI that you gave to reddit exactly or else authentication will fail. Optional for `script` apps, although reddit requires one to be supplied during app registration. reddit doesn't actually use it; as such, it can be anything.
 
 ## authUrl(state, scopes, permanent)
 
@@ -143,6 +147,10 @@ See the **Client Authorization** section above for usage of this method.
 - `callback` - Required.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - An object containing response data
+
+## logout()
+
+Deletes the current bearer and refresh tokens (if applicable) and cancels any pending bearer token refresh timers. You should call this before you call `auth` for a second time.
 
 ## approve(thing, callback)
 
