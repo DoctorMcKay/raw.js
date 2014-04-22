@@ -13,6 +13,7 @@ require('./simplerequests.js');
 require('./api/captcha.js');
 require('./api/identity.js');
 require('./api/modposts.js');
+require('./api/submit.js');
 
 function reddit(userAgent) {
 	this._userAgent = userAgent;
