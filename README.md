@@ -152,6 +152,37 @@ See the **Client Authorization** section above for usage of this method.
 
 Deletes the current bearer and refresh tokens (if applicable) and cancels any pending bearer token refresh timers. You should call this before you call `auth` for a second time.
 
+## me(callback)
+
+*Scope: identity*
+
+Gets the account info of the current user.
+
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - An object containing the user's identity info
+
+## getPrefs(prefs, callback)
+
+*Scope: identity*
+
+Gets the account preferences of the current user. Preference names can be found by inspecting the `name` attribute of elements on the [preferences page](https://ssl.reddit.com/prefs/).
+
+- `prefs` - An optional array of preference names to filter. Omit to get all preferences.
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - An object containing the user's preferences
+
+## trophies(callback)
+
+*Scope: identity*
+
+Gets the list of trophies earned by the current user.
+
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - An array containing the user's trophy list
+
 ## approve(thing, callback)
 
 *Scope: modposts*
