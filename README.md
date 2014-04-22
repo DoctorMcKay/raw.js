@@ -512,6 +512,17 @@ Gets top submissions.
 
 This is a Listing request, see the **Listing Request** section above for details. In addition to normal Listing options, a `t` parameter may be passed with one of the following values: `hour`, `day`, `week`, `month`, `year`, `all` to filter submissions to a particular time.
 
+## random(r, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Gets a random submission.
+
+- `r` - *Optional.* A subreddit to get a submission in. If ommitted, a random subreddit will be selected.
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The random submission
+
 ## subredditInfo(r, callback)
 
 *Scope: read* - **Unauthenticated**
