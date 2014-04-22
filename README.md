@@ -443,6 +443,17 @@ Searches for subreddit names.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - The array of matched subreddit names is available as `response.names`
 
+## searchSubredditTopics(query, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Searches for subreddit topics.
+
+- `query` - Up to 50 characters to search for
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The array of matched subreddits
+
 ## comment(parent, text, callback)
 
 *Scope: submit*

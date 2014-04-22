@@ -39,3 +39,4 @@ reddit.prototype.recommended = function(sr, omit, callback) {
 };
 
 reddit._addSimpleRequest("searchSubredditNames", "search_reddit_names.json", "POST", ["query", "include_over_18"], null, "_rawJSON");
+reddit._addSimpleRequest("searchSubredditTopics", "subreddits_by_topic.json", "GET", ["query"], null, "_rawJSON");
