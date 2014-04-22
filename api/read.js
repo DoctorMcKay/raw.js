@@ -82,6 +82,41 @@ reddit._addListingRequest("new", "new.json");
 reddit._addListingRequest("top", "top.json");
 reddit._addListingRequest("controversial", "controversial.json");
 
+reddit.prototype.random = function(r, callback) {
+	if(typeof r == 'function') {
+		callback = r;
+		r = null;
+	}
+	
+	var path = '';
+	if(r) {
+		path = "/r/" + r;
+	}
+	
+	this._apiRequest("random.json", {"path": path}, function(err, response, body) {
+		if(!callback) {
+			return;
+		}
+		
+		if(err) {
+			callback(err);
+			return;
+		}
+		
+		try {
+			var json = JSON.parse(body);
+			if(json.error) {
+				callback(json.error);
+				return;
+			}
+			
+			callback(null, json[0].data.children[0]);
+		} catch(e) {
+			callback("reddit API returned invalid response: " + e);
+		}
+	});
+};
+
 reddit.prototype.subredditInfo = function(r, callback) {
 	var self = this;
 	this._apiRequest("about.json", {"path": "/r/" + r}, function(err, response, body) {
