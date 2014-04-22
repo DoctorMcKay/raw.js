@@ -51,6 +51,10 @@ reddit.prototype._apiRequest = function(endpoint, options, callback) {
 		"path": "/api"
 	};
 	
+	if(!options.domain && !this.bearerToken) {
+		options.domain = "http://www.reddit.com";
+	}
+	
 	for(var i in defaults) {
 		if(options[i] == undefined) {
 			options[i] = defaults[i];
