@@ -37,3 +37,5 @@ reddit.prototype.recommended = function(sr, omit, callback) {
 		self._rawJSON(err, body, callback);
 	});
 };
+
+reddit._addSimpleRequest("searchSubredditNames", "search_reddit_names.json", "POST", ["query", "include_over_18"], null, "_rawJSON");

@@ -431,6 +431,18 @@ Gets a list of recommended subreddits based on subreddits supplied to it.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `response` - An array of recommended subreddits
 
+## searchSubredditNames(query, includeNSFW, callback)
+
+*Scope: read* - **Unauthenticated**
+
+Searches for subreddit names.
+
+- `query` - Up to 50 characters to search for in subreddit names
+- `includeNSFW` - If `false`, NSFW (over18) subreddits will be filtered out
+- `callback` - Optional.
+	- `err` - A string explaining the error that occurred, or `null` if success
+	- `response` - The array of matched subreddit names is available as `response.names`
+
 ## comment(parent, text, callback)
 
 *Scope: submit*
