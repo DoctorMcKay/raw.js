@@ -166,7 +166,7 @@ Distinguishes a link or comment.
 	- `err` - A string explaining the error that occurred, or `null` if success
 	- `data` - An object containing data of the thing that was distinguished
 
-## ignoreReports = function(thing, callback)
+## ignoreReports(thing, callback)
 
 *Scope: modposts*
 
