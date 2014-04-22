@@ -47,3 +47,32 @@ reddit.prototype.userTrophies = function(user, callback) {
 		self._listing(err, body, callback);
 	});
 };
+
+reddit.prototype.comments = function(options, callback) {
+	if(typeof options == 'function') {
+		callback = options;
+		options = {};
+	}
+	
+	var path = '';
+	if(options.r) {
+		path = "/r/" + options.r;
+	}
+	
+	if(options.link) {
+		path += "/comments";
+	}
+	
+	var qs = {
+		"comment": options.comment,
+		"context": options.context,
+		"depth": options.depth,
+		"limit": options.limit,
+		"sort": options.sort
+	};
+	
+	var self = this;
+	this._apiRequest(((options.link) ? options.link : "comments") + ".json", {"path": path, "qs": qs}, function(err, response, data) {
+		self._listing(err, data, callback);
+	});
+};
