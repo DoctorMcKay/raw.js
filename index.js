@@ -10,7 +10,7 @@ require('util').inherits(reddit, require('events').EventEmitter);
 require('./handlers.js');
 require('./simplerequests.js');
 
-require('./modposts.js');
+require('./api/modposts.js');
 
 function reddit(userAgent) {
 	this._userAgent = userAgent;
