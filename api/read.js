@@ -76,3 +76,8 @@ reddit.prototype.comments = function(options, callback) {
 		self._listing(err, data, callback);
 	});
 };
+
+reddit._addListingRequest("hot", "hot.json");
+reddit._addListingRequest("new", "new.json");
+reddit._addListingRequest("top", "top.json");
+reddit._addListingRequest("controversial", "controversial.json");
