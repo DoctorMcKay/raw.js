@@ -86,6 +86,18 @@ reddit.prototype._apiRequest = function(endpoint, options, callback) {
 			};
 		}
 		
+		if(response.statusCode >= 400) {
+			var codeDescriptions = {
+				'400': "Bad Request",
+				'403': "Forbidden",
+				'404': "Not Found",
+				'500': "Internal Server Error"
+			};
+			
+			callback((codeDescriptions[response.statusCode] != undefined) ? response.statusCode + ": " + codeDescriptions[response.statusCode] : response.statusCode);
+			return;
+		}
+		
 		callback(err, response, body);
 	});
 };
