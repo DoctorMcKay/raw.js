@@ -176,7 +176,7 @@ Gets the URL of a new CAPTCHA image. Call this if `captchaNeeded` reports that y
 	- `err` - A string explaining the error that occurred (an array of strings if multiple errors occurred), or `null` if success
 	- `url` - The URL to the new CAPTCHA image
 
-## delete(thing, callback)
+## del(thing, callback)
 
 Deletes a submission or comment.
 
