@@ -1,5 +1,7 @@
 var reddit = global.reddit;
 
+// reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, callback)
+
 reddit._addSimpleRequest("captchaNeeded", "needs_captcha.json", "GET", [], null, "_rawJSON");
 
 reddit.prototype.captcha = function(callback) {
