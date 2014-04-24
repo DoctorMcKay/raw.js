@@ -108,7 +108,6 @@ reddit.prototype._things = function(err, body, callback) {
 	
 	try {
 		var json = JSON.parse(body);
-		console.log(json);
 		if(json.error) {
 			callback(json.error);
 		} else if(json.json.errors.length == 1) {
@@ -117,6 +116,31 @@ reddit.prototype._things = function(err, body, callback) {
 			callback(json.json.errors);
 		} else {
 			callback(null, json.json.data.things);
+		}
+	} catch(e) {
+		callback("reddit API returned invalid response: " + e);
+	}
+};
+
+reddit.prototype._multipleErrors = function(err, body, callback) {
+	if(!callback) {
+		return;
+	}
+	
+	if(err) {
+		callback(err);
+	}
+	
+	try {
+		var json = JSON.parse(body);
+		if(json.error) {
+			callback(json.error);
+		} else if(json.json.errors.length == 1) {
+			callback(json.json.errors[0]);
+		} else if(json.json.errors.length > 1) {
+			callback(json.json.errors);
+		} else {
+			callback(null);
 		}
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
