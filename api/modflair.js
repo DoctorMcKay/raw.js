@@ -9,3 +9,10 @@ reddit.prototype.clearUserFlairTemplates = function(r, callback) {
 		self._multipleErrors(err, body, callback);
 	});
 };
+
+reddit.prototype.clearLinkFlairTemplates = function(r, callback) {
+	var self = this;
+	this._apiRequest("clearflairtemplates", {"path": "/r/" + r + "/api", "method": "POST", "form": {"api_type": "json", "flair_type": "LINK_FLAIR"}}, function(err, response, body) {
+		self._multipleErrors(err, body, callback);
+	});
+};
