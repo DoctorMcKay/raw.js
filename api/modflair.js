@@ -44,3 +44,11 @@ reddit.prototype.linkFlair = function(r, link, text, cssClass, callback) {
 		self._multipleErrors(err, body, callback);
 	});
 };
+
+reddit.prototype.flairSettings = function(r, settings, callback) {
+	var self = this;
+	settings.api_type = "json";
+	this._apiRequest("flairconfig", {"path": "/r/" + r + "/api", "method": "POST", "form": settings}, function(err, response, body) {
+		self._multipleErrors(err, body, callback);
+	});
+};
