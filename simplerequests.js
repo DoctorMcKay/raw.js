@@ -34,7 +34,7 @@ reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, cal
 	};
 };
 
-reddit._addListingRequest = function(name, endpoint, path, args) {
+reddit._addListingRequest = function(name, endpoint, path, args, cb) {
 	reddit.prototype[name] = function() {
 		var options;
 		var callback;
@@ -78,9 +78,13 @@ reddit._addListingRequest = function(name, endpoint, path, args) {
 			}
 		}
 		
+		if(!cb) {
+			cb = "_listing";
+		}
+		
 		var self = this;
 		this._apiRequest(endpoint, {"path": requestPath, "qs": qs}, function(err, response, body) {
-			self._listing(err, body, callback);
+			self[cb](err, body, callback);
 		});
 	};
 };
