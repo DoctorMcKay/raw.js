@@ -10,20 +10,22 @@ reddit.prototype._modifySingleItem = function(err, body, callback) {
 		return;
 	}
 	
+	var json;
 	try {
-		var json = JSON.parse(body);
-		console.log(json);
-		if(json.error) {
-			callback(json.error);
-		} else if(json.json.errors.length == 1) {
-			callback(json.json.errors[0]);
-		} else if(json.json.errors.length > 1) {
-			callback(json.json.errors);
-		} else {
-			callback(null, json.json.data.things[0]);
-		}
+		json = JSON.parse(body);
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
+		return;
+	}
+	
+	if(json.error) {
+		callback(json.error);
+	} else if(json.json.errors.length == 1) {
+		callback(json.json.errors[0]);
+	} else if(json.json.errors.length > 1) {
+		callback(json.json.errors);
+	} else {
+		callback(null, json.json.data.things[0]);
 	}
 }
 
@@ -37,18 +39,19 @@ reddit.prototype._noResponse = function(err, body, callback) {
 		return;
 	}
 	
+	var json;
 	try {
 		var json = JSON.parse(body);
-		if(json.error) {
-			callback(json.error);
-			return;
-		}
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
 		return;
 	}
 	
-	callback(null);
+	if(json.error) {
+		callback(json.error);
+	} else {
+		callback(null);
+	}
 };
 
 reddit.prototype._rawJSON = function(err, body, callback) {
@@ -61,16 +64,18 @@ reddit.prototype._rawJSON = function(err, body, callback) {
 		return;
 	}
 	
+	var json;
 	try {
 		var json = JSON.parse(body);
-		if(json.error) {
-			callback(json.error);
-			return;
-		}
-		
-		callback(null, json);
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
+		return;
+	}
+	
+	if(json.error) {
+		callback(json.error);
+	} else {
+		callback(null, json);
 	}
 };
 
@@ -84,16 +89,18 @@ reddit.prototype._listing = function(err, body, callback) {
 		return;
 	}
 	
+	var json;
 	try {
 		var json = JSON.parse(body);
-		if(json.error) {
-			callback(json.error);
-			return;
-		}
-		
-		callback(null, json.data);
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
+		return;
+	}
+	
+	if(json.error) {
+		callback(json.error);
+	} else {
+		callback(null, json.data);
 	}
 };
 
@@ -104,21 +111,25 @@ reddit.prototype._things = function(err, body, callback) {
 	
 	if(err) {
 		callback(err);
+		return;
 	}
 	
+	var json;
 	try {
 		var json = JSON.parse(body);
-		if(json.error) {
-			callback(json.error);
-		} else if(json.json.errors.length == 1) {
-			callback(json.json.errors[0]);
-		} else if(json.json.errors.length > 1) {
-			callback(json.json.errors);
-		} else {
-			callback(null, json.json.data.things);
-		}
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
+		return;
+	}
+	
+	if(json.error) {
+		callback(json.error);
+	} else if(json.json.errors.length == 1) {
+		callback(json.json.errors[0]);
+	} else if(json.json.errors.length > 1) {
+		callback(json.json.errors);
+	} else {
+		callback(null, json.json.data.things);
 	}
 };
 
@@ -129,20 +140,24 @@ reddit.prototype._multipleErrors = function(err, body, callback) {
 	
 	if(err) {
 		callback(err);
+		return;
 	}
 	
+	var json;
 	try {
 		var json = JSON.parse(body);
-		if(json.error) {
-			callback(json.error);
-		} else if(json.json.errors.length == 1) {
-			callback(json.json.errors[0]);
-		} else if(json.json.errors.length > 1) {
-			callback(json.json.errors);
-		} else {
-			callback(null);
-		}
 	} catch(e) {
 		callback("reddit API returned invalid response: " + e);
+		return;
+	}
+	
+	if(json.error) {
+		callback(json.error);
+	} else if(json.json.errors.length == 1) {
+		callback(json.json.errors[0]);
+	} else if(json.json.errors.length > 1) {
+		callback(json.json.errors);
+	} else {
+		callback(null);
 	}
 };

@@ -22,16 +22,19 @@ reddit.prototype.getPrefs = function(prefs, callback) {
 reddit.prototype.trophies = function(callback) {
 	var self = this;
 	this._apiRequest("trophies", {"path": "/api/v1/me"}, function(err, response, body) {
+		var json;
 		try {
-			var json = JSON.parse(body);
-			if(json.error) {
-				callback(json.error);
-				return;
-			}
-			
-			callback(null, json.data.trophies);
+			json = JSON.parse(body);
 		} catch(e) {
 			callback("reddit API returned invalid response: " + e);
+			return;
 		}
+		
+		if(json.error) {
+			callback(json.error);
+			return;
+		}
+		
+		callback(null, json.data.trophies);
 	});
 };
