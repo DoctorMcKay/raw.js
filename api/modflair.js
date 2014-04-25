@@ -54,3 +54,15 @@ reddit.prototype.flairSettings = function(r, settings, callback) {
 };
 
 reddit._addListingRequest("flairList", "flairlist.json", "/api", ["name"], "_rawJSON");
+
+reddit.prototype.userFlairTemplate = function(r, text, editable, cssClass, id, callback) {
+	if(typeof id == 'function') {
+		callback = id;
+		id = undefined;
+	}
+	
+	var self = this;
+	this._apiRequest("flairtemplate", {"path": "/r/" + r + "/api", "method": "POST", "form": {"api_type": "json", "css_class": cssClass, "flair_template_id": id, "flair_type": "USER_FLAIR", "text": text, "text_editable": editable}}, function(err, response, body) {
+		self._multipleErrors(err, body, callback);
+	});
+};
