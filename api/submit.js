@@ -25,19 +25,22 @@ reddit.prototype.submit = function(options, callback) {
 			return;
 		}
 		
+		var json;
 		try {
-			var json = JSON.parse(body);
-			if(json.error) {
-				callback(json.error);
-			} else if(json.json.errors.length == 1) {
-				callback(json.json.errors[0]);
-			} else if(json.json.errors.length > 1) {
-				callback(json.json.errors);
-			} else {
-				callback(null, json.json.data.id);
-			}
+			json = JSON.parse(body);
 		} catch(e) {
 			callback("reddit API returned invalid response: " + e);
+			return;
+		}
+		
+		if(json.error) {
+			callback(json.error);
+		} else if(json.json.errors.length == 1) {
+			callback(json.json.errors[0]);
+		} else if(json.json.errors.length > 1) {
+			callback(json.json.errors);
+		} else {
+			callback(null, json.json.data.id);
 		}
 	});
 };

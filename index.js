@@ -150,37 +150,40 @@ reddit.prototype.auth = function(options, callback) {
 			return;
 		}
 		
+		var json;
 		try {
 			var json = JSON.parse(body);
-			if(json.error) {
-				callback(json.error);
-				return;
-			}
-			
-			self.bearerToken = json.access_token;
-			
-			if(json.refresh_token) {
-				self.refreshToken = json.refresh_token;
-			}
-			
-			if(self.refreshToken) {
-				// If we have a refresh token, set a timer to automatically refresh it when our bearer token expires
-				self._refreshTimeout = setTimeout(function() {
-					refreshBearerToken(self);
-				}, (json.expires_in - 60) * 1000);
-			} else if(options.username) {
-				// If we're logged in as a script, set a timer to automatically refresh the login when our bearer token expires
-				self._refreshTimeout = setTimeout(function() {
-					refreshBearerToken(self, options);
-				}, (json.expires_in - 60) * 1000);
-			}
-			
-			json.scope = json.scope.split(',');
-			
-			callback(null, json);
 		} catch(e) {
 			callback("reddit API returned invalid JSON: " + e);
+			return;
 		}
+		
+		if(json.error) {
+			callback(json.error);
+			return;
+		}
+		
+		self.bearerToken = json.access_token;
+		
+		if(json.refresh_token) {
+			self.refreshToken = json.refresh_token;
+		}
+		
+		if(self.refreshToken) {
+			// If we have a refresh token, set a timer to automatically refresh it when our bearer token expires
+			self._refreshTimeout = setTimeout(function() {
+				refreshBearerToken(self);
+			}, (json.expires_in - 60) * 1000);
+		} else if(options.username) {
+			// If we're logged in as a script, set a timer to automatically refresh the login when our bearer token expires
+			self._refreshTimeout = setTimeout(function() {
+				refreshBearerToken(self, options);
+			}, (json.expires_in - 60) * 1000);
+		}
+		
+		json.scope = json.scope.split(',');
+		
+		callback(null, json);
 	});
 };
 

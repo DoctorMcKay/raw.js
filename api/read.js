@@ -103,17 +103,20 @@ reddit.prototype.random = function(r, callback) {
 			return;
 		}
 		
+		var json;
 		try {
-			var json = JSON.parse(body);
-			if(json.error) {
-				callback(json.error);
-				return;
-			}
-			
-			callback(null, json[0].data.children[0]);
+			json = JSON.parse(body);
 		} catch(e) {
 			callback("reddit API returned invalid response: " + e);
+			return;
 		}
+		
+		if(json.error) {
+			callback(json.error);
+			return;
+		}
+		
+		callback(null, json[0].data.children[0]);
 	});
 };
 
