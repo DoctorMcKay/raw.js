@@ -179,7 +179,7 @@ reddit.prototype.auth = function(options, callback) {
 			
 			callback(null, json);
 		} catch(e) {
-			callback("reddit API returned invalid JSON");
+			callback("reddit API returned invalid JSON: " + e);
 		}
 	});
 };
