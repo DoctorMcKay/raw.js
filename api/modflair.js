@@ -52,3 +52,5 @@ reddit.prototype.flairSettings = function(r, settings, callback) {
 		self._multipleErrors(err, body, callback);
 	});
 };
+
+reddit._addListingRequest("flairList", "flairlist.json", "/api", ["name"], "_rawJSON");
