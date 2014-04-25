@@ -79,8 +79,8 @@ reddit.prototype.comments = function(options, callback) {
 
 reddit._addListingRequest("hot", "hot.json");
 reddit._addListingRequest("new", "new.json");
-reddit._addListingRequest("top", "top.json");
-reddit._addListingRequest("controversial", "controversial.json");
+reddit._addListingRequest("top", "top.json", null, ["t"]);
+reddit._addListingRequest("controversial", "controversial.json", null, ["t"]);
 
 reddit.prototype.random = function(r, callback) {
 	if(typeof r == 'function') {
@@ -127,7 +127,7 @@ reddit.prototype.subredditInfo = function(r, callback) {
 	});
 };
 
-reddit._addListingRequest("search", "search.json");
+reddit._addListingRequest("search", "search.json", null, ["t", "q", "sort"]);
 reddit._addListingRequest("searchSubreddits", "subreddits/search.json");
 reddit._addListingRequest("popularSubreddits", "subreddits/popular.json");
 reddit._addListingRequest("newSubreddits", "subreddits/new.json");

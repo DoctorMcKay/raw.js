@@ -34,7 +34,7 @@ reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, cal
 	};
 };
 
-reddit._addListingRequest = function(name, endpoint, path) {
+reddit._addListingRequest = function(name, endpoint, path, args) {
 	reddit.prototype[name] = function() {
 		var options;
 		var callback;
@@ -67,10 +67,16 @@ reddit._addListingRequest = function(name, endpoint, path) {
 		qs.limit = options.limit;
 		qs.count = options.count;
 		qs.show = (options.all) ? "all" : undefined;
-		qs.t = options.t;
-		qs.q = options.q;
-		qs.restrict_sr = !!options.r;
-		qs.sort = options.sort;
+		
+		if(args && options) {
+			for(var i = 0; i < args.length; i++) {
+				qs[args[i]] = options[args[i]];
+			}
+			
+			if(args.indexOf("restrict_sr") != -1) {
+				qs.restrict_sr = !!options.r;
+			}
+		}
 		
 		var self = this;
 		this._apiRequest(endpoint, {"path": requestPath, "qs": qs}, function(err, response, body) {
