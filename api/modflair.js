@@ -23,3 +23,10 @@ reddit.prototype.deleteUserFlair = function(r, user, callback) {
 		self._multipleErrors(err, body, callback);
 	});
 };
+
+reddit.prototype.deleteFlairTemplate = function(r, id, callback) {
+	var self = this;
+	this._apiRequest("deleteflairtemplate", {"path": "/r/" + r + "/api", "method": "POST", "form": {"api_type": "json", "flair_template_id": id}}, function(err, response, body) {
+		self._multipleErrors(err, body, callback);
+	});
+};
