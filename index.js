@@ -221,12 +221,12 @@ function refreshBearerToken(self, options) {
 }
 
 reddit.prototype.logout = function() {
-	if(self._refreshTimeout) {
-		clearTimeout(self._refreshTimeout);
+	if(this._refreshTimeout) {
+		clearTimeout(this._refreshTimeout);
 	}
 	
-	delete self.bearerToken;
-	delete self.refreshToken;
+	delete this.bearerToken;
+	delete this.refreshToken;
 };
 
 reddit.prototype.getRateLimitDetails = function() {
