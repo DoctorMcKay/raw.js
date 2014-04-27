@@ -1,6 +1,7 @@
 var reddit = global.reddit;
 
 // reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, callback)
+// reddit._addListingRequest = function(name, endpoint, path, args, cb)
 
 reddit._addSimpleRequest("block", "block", "POST", ["id"], null, "_noResponse");
 
@@ -39,3 +40,5 @@ reddit.prototype.markUnread = function(ids, callback) {
 		self._noResponse(err, body, callback);
 	});
 };
+
+reddit._addListingRequest("inbox", "inbox.json", "/message", ["mark", "mid"]);
