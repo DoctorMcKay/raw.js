@@ -17,3 +17,25 @@ reddit.prototype.message = function(options, callback) {
 		self._multipleErrors(err, body, callback);
 	});
 };
+
+reddit.prototype.markRead = function(ids, callback) {
+	if(typeof ids == 'object') {
+		ids = ids.join(',');
+	}
+	
+	var self = this;
+	this._apiRequest("read_message", {"method": "POST", "form": {"id": ids}}, function(err, response, body) {
+		self._noResponse(err, body, callback);
+	});
+};
+
+reddit.prototype.markUnread = function(ids, callback) {
+	if(typeof ids == 'object') {
+		ids = ids.join(',');
+	}
+	
+	var self = this;
+	this._apiRequest("unread_message", {"method": "POST", "form": {"id": ids}}, function(err, response, body) {
+		self._noResponse(err, body, callback);
+	});
+};
