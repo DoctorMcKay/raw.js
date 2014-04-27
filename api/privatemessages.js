@@ -44,3 +44,4 @@ reddit.prototype.markUnread = function(ids, callback) {
 reddit._addListingRequest("inbox", "inbox.json", "/message", ["mark", "mid"]);
 reddit._addListingRequest("unread", "unread.json", "/message", ["mark", "mid"]);
 reddit._addListingRequest("sent", "sent.json", "/message", ["mark", "mid"]);
+reddit._addListingRequest("messages", "messages.json", "/message", ["mark", "mid"]);
