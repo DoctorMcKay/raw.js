@@ -100,7 +100,7 @@ reddit.prototype._apiRequest = function(endpoint, options, callback) {
 			};
 		}
 		
-		if(response.statusCode >= 400) {
+		if(!err && response.statusCode >= 400) {
 			var codeDescriptions = {
 				'400': "Bad Request",
 				'403': "Forbidden",
