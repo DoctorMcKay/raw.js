@@ -9,6 +9,7 @@ require('util').inherits(reddit, require('events').EventEmitter);
 
 require('./handlers.js');
 require('./simplerequests.js');
+require('./commentstream.js');
 
 require('./api/captcha.js');
 require('./api/edit.js');
