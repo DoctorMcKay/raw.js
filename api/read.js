@@ -1,7 +1,7 @@
 var reddit = global.reddit;
 
 // reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, callback)
-// reddit._addListingRequest = function(name, endpoint, path)
+// reddit._addListingRequest = function(name, endpoint, path, args, cb)
 
 reddit._addSimpleRequest("moreComments", "morechildren", "POST", ["link_id", "children", "sort"], {"api_type": "json"}, "_things");
 
@@ -138,3 +138,9 @@ reddit.prototype.user = function(user, callback) {
 		self._rawJSON(err, body, callback);
 	});
 };
+
+reddit._addListingRequest("banned", "banned.json", "/about", ["user"]);
+reddit._addListingRequest("wikiBanned", "wikibanned.json", "/about", ["user"]);
+reddit._addListingRequest("approvedSubmitters", "contributors.json", "/about", ["user"]);
+reddit._addListingRequest("wikiContributors", "wikicontributors.json", "/about", ["user"]);
+reddit._addListingRequest("moderators", "moderators.json", "/about", ["user"]);
