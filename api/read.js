@@ -144,3 +144,8 @@ reddit._addListingRequest("wikiBanned", "wikibanned.json", "/about", ["user"]);
 reddit._addListingRequest("approvedSubmitters", "contributors.json", "/about", ["user"]);
 reddit._addListingRequest("wikiContributors", "wikicontributors.json", "/about", ["user"]);
 reddit._addListingRequest("moderators", "moderators.json", "/about", ["user"]);
+
+reddit._addListingRequest("reports", "reports.json", "/about", ["only"]);
+reddit._addListingRequest("spam", "spam.json", "/about", ["only"]);
+reddit._addListingRequest("modqueue", "modqueue.json", "/about", ["only"]);
+reddit._addListingRequest("unmoderated", "unmoderated.json", "/about", ["only"]);
