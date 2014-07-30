@@ -31,3 +31,7 @@ reddit.prototype.inviteLiveContributor = function(threadID, username, permission
 		self._multipleErrors(err, body, callback);
 	});
 };
+
+// reddit._addLiveRequest = function(name, endpoint, method, args, constArgs, callback)
+
+reddit._addLiveRequest("acceptLiveContributorInvite", "accept_contributor_invite", "POST", [], {"api_type": "json"}, "_multipleErrors");
