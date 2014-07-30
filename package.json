@@ -13,6 +13,7 @@
 		"url": "https://bitbucket.org/Doctor_McKay/raw.js"
 	},
 	"dependencies": {
-		"request":			"*"
+		"request":			"*",
+		"ws":				"0.4.x"
 	}
 }
