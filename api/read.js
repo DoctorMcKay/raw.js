@@ -149,3 +149,5 @@ reddit._addListingRequest("reports", "reports.json", "/about", ["only"]);
 reddit._addListingRequest("spam", "spam.json", "/about", ["only"]);
 reddit._addListingRequest("modqueue", "modqueue.json", "/about", ["only"]);
 reddit._addListingRequest("unmoderated", "unmoderated.json", "/about", ["only"]);
+
+reddit._addListingRequest("liveUpdates", ".json");
