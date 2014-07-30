@@ -14,6 +14,7 @@ require('./commentstream.js');
 require('./api/captcha.js');
 require('./api/edit.js');
 require('./api/identity.js');
+require('./api/livemanage.js');
 require('./api/modflair.js');
 require('./api/modlog.js');
 require('./api/modposts.js');
