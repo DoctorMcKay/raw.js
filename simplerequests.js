@@ -34,6 +34,42 @@ reddit._addSimpleRequest = function(name, endpoint, method, args, constArgs, cal
 	};
 };
 
+reddit._addLiveRequest = function(name, endpoint, method, args, constArgs, callback) {
+	reddit.prototype[name] = function() {
+		var threadID = arguments[0];
+		
+		var form;
+		if(args.length > 0 || constArgs) {
+			form = {};
+		}
+		
+		for(var i = 0; i < args.length; i++) {
+			form[args[i]] = arguments[i + 1]; // argument 0 is reserved for the thread ID
+		}
+		
+		for(var i in constArgs) {
+			form[i] = constArgs[i];
+		}
+		
+		var userCallback = arguments[arguments.length - 1];
+		if(typeof userCallback != 'function') {
+			userCallback = null;
+		}
+		
+		var req = {"method": method};
+		if(method == "GET") {
+			req.qs = form;
+		} else {
+			req.form = form;
+		}
+		
+		var self = this;
+		this._apiRequest("live/" + threadID + "/" + endpoint, req, function(err, response, body) {
+			self[callback](err, body, userCallback);
+		});
+	};
+};
+
 reddit._addListingRequest = function(name, endpoint, path, args, cb) {
 	reddit.prototype[name] = function() {
 		var options;
