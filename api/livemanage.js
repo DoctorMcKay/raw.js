@@ -36,3 +36,5 @@ reddit.prototype.inviteLiveContributor = function(threadID, username, permission
 
 reddit._addLiveRequest("acceptLiveContributorInvite", "accept_contributor_invite", "POST", [], {"api_type": "json"}, "_multipleErrors");
 reddit._addLiveRequest("closeLiveThread", "close_thread", "POST", [], {"api_type": "json"}, "_multipleErrors");
+reddit._addLiveRequest("editLiveThread", "edit", "POST", ["title", "description"], {"api_type": "json"}, "_multipleErrors");
+reddit._addLiveRequest("leaveLiveContributor", "leave_contributor", "POST", [], {"api_type": "json"}, "_multipleErrors");
