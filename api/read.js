@@ -151,3 +151,4 @@ reddit._addListingRequest("modqueue", "modqueue.json", "/about", ["only"]);
 reddit._addListingRequest("unmoderated", "unmoderated.json", "/about", ["only"]);
 
 reddit._addListingRequest("liveUpdates", ".json");
+reddit._addListingRequest("liveThreadInfo", "about.json");
