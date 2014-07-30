@@ -85,3 +85,7 @@ reddit.prototype.createLiveThread = function(options, callback) {
 		}
 	});
 };
+
+// reddit._addLiveRequest = function(name, endpoint, method, args, constArgs, callback)
+
+reddit._addLiveRequest("liveUpdate", "update", "POST", ["body"], {"api_type": "json"}, "_multipleErrors");
