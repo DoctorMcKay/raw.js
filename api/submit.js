@@ -51,3 +51,37 @@ reddit.prototype.submitText = function(r, callback) {
 		self._rawJSON(err, body, callback);
 	});
 };
+
+reddit.prototype.createLiveThread = function(options, callback) {
+	var title = options.title;
+	var description = options.description || '';
+	var self = this;
+	this._apiRequest("create", {"path": "/api/live", "method": "POST", "form": {
+		"api_type": "json",
+		"title": title,
+		"description": description
+	}}, function(err, response, body) {
+		if(err) {
+			callback(err);
+			return;
+		}
+		
+		var json;
+		try {
+			json = JSON.parse(body);
+		} catch(e) {
+			callback("reddit API returned invalid response: " + e);
+			return;
+		}
+		
+		if(json.error) {
+			callback(json.error);
+		} else if(json.json.errors.length == 1) {
+			callback(json.json.errors[0]);
+		} else if(json.json.errors.length > 1) {
+			callback(json.json.errors);
+		} else {
+			callback(null, json.json.data.id);
+		}
+	});
+};
