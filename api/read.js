@@ -153,3 +153,4 @@ reddit._addListingRequest("unmoderated", "unmoderated.json", "/about", ["only"])
 reddit._addListingRequest("liveUpdates", ".json");
 reddit._addListingRequest("liveThreadInfo", "about.json");
 reddit._addListingRequest("liveThreadContributors", "contributors.json");
+reddit._addListingRequest("liveDiscussions", "discussions.json");
