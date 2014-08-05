@@ -73,7 +73,24 @@ reddit.prototype.comments = function(options, callback) {
 	
 	var self = this;
 	this._apiRequest(((options.link) ? options.link : "comments") + ".json", {"path": path, "qs": qs}, function(err, response, data) {
-		self._listing(err, data, callback);
+		if(err) {
+			callback(err);
+			return;
+		}
+		
+		var json;
+		try {
+			json = JSON.parse(data);
+		} catch(e) {
+			callback("reddit API returned invalid response: " + e);
+			return;
+		}
+		
+		if(json.error) {
+			callback(json.error);
+		} else {
+			callback(null, json[0], json[1]);
+		}
 	});
 };
 
