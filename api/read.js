@@ -66,6 +66,7 @@ reddit.prototype.comments = function(options, callback) {
 	var qs = {
 		"comment": options.comment,
 		"context": options.context,
+		"after": options.after,
 		"depth": options.depth,
 		"limit": options.limit,
 		"sort": options.sort
