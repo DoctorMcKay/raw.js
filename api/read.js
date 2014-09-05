@@ -88,8 +88,10 @@ reddit.prototype.comments = function(options, callback) {
 		
 		if(json.error) {
 			callback(json.error);
-		} else {
+		} else if(options.link) {
 			callback(null, json[0], json[1]);
+		} else {
+			callback(null, json);
 		}
 	});
 };
