@@ -89,7 +89,7 @@ reddit.prototype.comments = function(options, callback) {
 		if(json.error) {
 			callback(json.error);
 		} else if(options.link) {
-			callback(null, json[0], json[1]);
+			callback(null, json[1], json[0]);
 		} else {
 			callback(null, json);
 		}
