@@ -154,7 +154,11 @@ reddit.prototype._multipleErrors = function(err, body, callback) {
 	if(json.error) {
 		callback(json.error);
 	} else if(json.json.errors.length == 1) {
-		callback(json.json.errors[0]);
+		if(json.json.errors[0].length) {
+			callback(json.json.errors[0][0]);
+		} else {
+			callback(json.json.errors[0]);
+		}
 	} else if(json.json.errors.length > 1) {
 		callback(json.json.errors);
 	} else {
