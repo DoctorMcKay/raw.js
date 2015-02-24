@@ -93,6 +93,10 @@ reddit._addListingRequest = function(name, endpoint, path, args, cb) {
 			requestPath = "/r/" + options.r;
 		}
 		
+		if(options && options.user) {
+			requestPath = "/user/" + options.user;
+		}
+		
 		if(options && options.live) {
 			requestPath = "/live/" + options.live;
 		}
