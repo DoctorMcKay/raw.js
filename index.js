@@ -16,6 +16,7 @@ require('./api/edit.js');
 require('./api/history.js');
 require('./api/identity.js');
 require('./api/livemanage.js');
+require('./api/modcontributors.js');
 require('./api/modflair.js');
 require('./api/modlog.js');
 require('./api/modothers.js');
