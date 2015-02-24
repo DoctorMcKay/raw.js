@@ -14,6 +14,7 @@ require('./livethreadreader.js');
 
 require('./api/captcha.js');
 require('./api/edit.js');
+require('./api/history.js');
 require('./api/identity.js');
 require('./api/livemanage.js');
 require('./api/modflair.js');
