@@ -18,6 +18,7 @@ require('./api/identity.js');
 require('./api/livemanage.js');
 require('./api/modflair.js');
 require('./api/modlog.js');
+require('./api/modothers.js');
 require('./api/modposts.js');
 require('./api/privatemessages.js');
 require('./api/read.js');
