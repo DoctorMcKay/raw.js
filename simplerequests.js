@@ -132,3 +132,15 @@ reddit._addListingRequest = function(name, endpoint, path, args, cb) {
 		});
 	};
 };
+
+reddit._addSubredditUnfriendRequest = function(name, type) {
+	reddit.prototype[name] = function(subreddit, username, callback) {
+		var self = this;
+		this._apiRequest("unfriend", {"path": "/r/" + subreddit + "/api", "method": "POST", "form": {
+			"type": type,
+			"name": username
+		}}, function(err, response, body) {
+			self._noResponse(err, body, callback);
+		});
+	};
+};

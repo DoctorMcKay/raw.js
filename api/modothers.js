@@ -65,3 +65,6 @@ reddit.prototype.inviteModerator = function(subreddit, username, permissions, ca
 		self._multipleErrors(err, body, callback);
 	});
 };
+
+reddit._addSubredditUnfriendRequest("revokeModeratorInvite", "moderator_invite");
+reddit._addSubredditUnfriendRequest("removeModerator", "moderator");
