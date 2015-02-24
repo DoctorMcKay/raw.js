@@ -1,4 +1,4 @@
-var reddit = global.reddit;
+var reddit = require('./index.js');
 
 reddit.prototype._modifySingleItem = function(err, body, callback) {
 	if(!callback) {

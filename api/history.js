@@ -1,4 +1,4 @@
-var reddit = global.reddit;
+var reddit = require('../index.js');
 
 // reddit._addListingRequest = function(name, endpoint, path, args, cb)
 reddit._addListingRequest("userLinks", "submitted.json", null, ['sort', 't']);
