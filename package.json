@@ -3,14 +3,14 @@
 	"version": "0.4.0",
 	"description": "API wrapper for reddit.com",
 	"keywords": ["reddit", "api", "wrapper"],
-	"homepage": "https://bitbucket.org/Doctor_McKay/raw.js",
+	"homepage": "https://github.com/DoctorMcKay/raw.js",
 	"bugs": {
-		"url": "https://bitbucket.org/Doctor_McKay/raw.js/issues"
+		"url": "https://github.com/DoctorMcKay/raw.js/issues"
 	},
 	"license": "MIT",
 	"repository": {
-		"type": "hg",
-		"url": "https://bitbucket.org/Doctor_McKay/raw.js"
+		"type": "git",
+		"url": "git://github.com/DoctorMcKay/raw.js.git"
 	},
 	"dependencies": {
 		"request":			"*",
