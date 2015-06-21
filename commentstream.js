@@ -5,7 +5,7 @@ reddit.CommentStream = CommentStream;
 
 require('util').inherits(CommentStream, require('events').EventEmitter);
 
-function CommentStream(options) {
+function CommentStream(reddit, options) {
 	options = options || {};
 	
 	var defaultOptions = {
@@ -24,6 +24,7 @@ function CommentStream(options) {
 		options.interval = 1000;
 	}
 	
+	this._reddit = reddit;
 	this._options = options;
 	
 	if(this._options.run) {
