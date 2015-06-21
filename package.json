@@ -13,7 +13,7 @@
 		"url": "git://github.com/DoctorMcKay/raw.js.git"
 	},
 	"dependencies": {
-		"request":			"*",
+		"request":			"^2.58.0",
 		"ws":				"0.4.x"
 	}
 }
