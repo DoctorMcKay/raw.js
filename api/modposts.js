@@ -12,14 +12,15 @@ reddit._addSimpleRequest("spam", "remove", "POST", ["id"], {"spam": true}, "_noR
 reddit._addSimpleRequest("contestMode", "set_contest_mode", "POST", ["id", "state"], {"api_type": "json"}, "_noResponse");
 reddit._addSimpleRequest("sticky", "set_subreddit_sticky", "POST", ["id", "state"], {"api_type": "json"}, "_noResponse");
 
-reddit.prototype.distinguish = function(thing, distinguish, sticky, callback) {
+reddit.prototype.distinguish = function(thing, distinguish, callback, sticky) {
 	if(distinguish === true) {
 		distinguish = 'yes';
 	} else if(distinguish === false) {
 		distinguish = 'no';
 	}
 	
-	var self = this;
+	var self   = this,
+	    sticky = typeof sticky !== 'undefined' ?  sticky : false;
 	this._apiRequest("distinguish", {"method": "POST", "form": {
 		"api_type": "json",
 		"how": distinguish,
