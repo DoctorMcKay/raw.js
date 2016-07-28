@@ -13,17 +13,25 @@ reddit._addSimpleRequest("contestMode", "set_contest_mode", "POST", ["id", "stat
 reddit._addSimpleRequest("sticky", "set_subreddit_sticky", "POST", ["id", "state"], {"api_type": "json"}, "_noResponse");
 
 reddit.prototype.distinguish = function(thing, distinguish, callback) {
+	var self = this,
+	    sticky = false;
+
 	if(distinguish === true) {
 		distinguish = 'yes';
+		sticky = false;
 	} else if(distinguish === false) {
 		distinguish = 'no';
+		sticky = false;
+	} else if(distinguish === 'sticky') {
+		distinguish = 'yes';
+		sticky = true;
 	}
-	
-	var self = this;
+
 	this._apiRequest("distinguish", {"method": "POST", "form": {
 		"api_type": "json",
 		"how": distinguish,
-		"id": thing
+		"id": thing,
+		"sticky": sticky
 	}}, function(err, response, body) {
 		self._modifySingleItem(err, body, callback);
 	});
