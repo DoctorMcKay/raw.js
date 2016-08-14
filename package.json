@@ -1,6 +1,6 @@
 {
 	"name": "raw.js",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "API wrapper for reddit.com",
 	"keywords": ["reddit", "api", "wrapper"],
 	"homepage": "https://github.com/DoctorMcKay/raw.js",
